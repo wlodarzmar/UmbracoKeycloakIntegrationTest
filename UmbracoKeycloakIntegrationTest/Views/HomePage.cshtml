@@ -1,0 +1,19 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+}
+
+
+@if (User?.Identity?.IsAuthenticated == true)
+{
+    <p>Hello @User.Identity.Name</p>
+    <a href="https://localhost:44360/private-page/">Private page</a><br />
+
+    <a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path">Logout</a>
+}
+else
+{
+    <a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Context.Request.Path">Login with Keycloak</a>
+}
